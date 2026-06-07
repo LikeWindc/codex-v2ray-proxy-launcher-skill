@@ -1,5 +1,5 @@
 interface:
-  display_name: "Codex v2ray Proxy Launcher"
-  short_description: "Create a Codex-only v2ray proxy desktop launcher."
-  default_prompt: "Use $codex-v2ray-proxy-launcher to create a Codex-only v2ray proxy launcher on Windows."
+  display_name: "Codex Proxy Launcher"
+  short_description: "Create a Codex-only local proxy desktop launcher."
+  default_prompt: "Use $codex-v2ray-proxy-launcher to create a Codex-only proxy launcher on Windows."
   brand_color: "#111827"
