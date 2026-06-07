@@ -7,7 +7,7 @@
 - Codex 新对话启动时反复出现 WebSocket reconnect。
 - Codex 日志里出现 `stream disconnected - retrying sampling request (1/5)`，随后 `falling back to HTTP`。
 - 不想开启 TUN/全局代理，因为会影响其他网站或应用。
-- 只想让 Codex 进程走 v2rayN、Clash、Mihomo、sing-box、NekoRay 等本机代理。
+- 只想让 Codex 进程走 Clash、Mihomo、sing-box、NekoRay 等本机代理。
 
 ## 工作原理
 
@@ -48,7 +48,7 @@ NO_PROXY
 如果你的 Codex 支持从 GitHub 安装 skill，可以使用这个仓库：
 
 ```text
-https://github.com/LikeWindc/codex-v2ray-proxy-launcher-skill
+https://github.com/LikeWindc/codex-proxy-launcher-skill
 ```
 
 也可以手动下载/克隆后，把目录作为 Codex skill 使用。
@@ -58,7 +58,7 @@ https://github.com/LikeWindc/codex-v2ray-proxy-launcher-skill
 进入 skill 目录后执行：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-v2ray-launcher.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-proxy-launcher.ps1
 ```
 
 脚本会自动：
@@ -76,19 +76,19 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-v2
 如果自动识别错了，或者你知道自己的代理端口，可以手动指定：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-v2ray-launcher.ps1 -ProxyUrl "http://127.0.0.1:7890"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-proxy-launcher.ps1 -ProxyUrl "http://127.0.0.1:7890"
 ```
 
-v2rayN 常见 mixed/http 端口示例：
+其他本机代理客户端 mixed/http 端口示例：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-v2ray-launcher.ps1 -ProxyUrl "http://127.0.0.1:10808"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-proxy-launcher.ps1 -ProxyUrl "http://127.0.0.1:10808"
 ```
 
 SOCKS5 示例：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-v2ray-launcher.ps1 -ProxyUrl "socks5h://127.0.0.1:10808"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-proxy-launcher.ps1 -ProxyUrl "socks5h://127.0.0.1:10808"
 ```
 
 ## 验证是否生效
@@ -156,7 +156,7 @@ sqlite3 "$env:USERPROFILE\.codex\logs_2.sqlite" "select datetime(ts,'unixepoch')
 - 已经运行的 Codex 不会继承新代理环境，必须完全退出后重新用快捷方式启动。
 - 这个方案是“按进程代理”，不是“只代理某个 WebSocket URL”。普通本机代理无法稳定按 TLS 加密后的路径分流。
 - 如果你使用的是 Clash/Mihomo，建议使用 mixed/http 端口，比如 `7890`。
-- 如果你使用的是 v2rayN，常见端口是 `10808`，但具体以你的软件设置为准。
+- 如果你的本机代理客户端使用 `10808` 等自定义端口，具体以你的软件设置为准。
 - 如果代理客户端、端口或协议改变，重新运行安装脚本即可。
 
 ## License

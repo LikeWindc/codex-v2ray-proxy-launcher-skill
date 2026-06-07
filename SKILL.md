@@ -1,6 +1,6 @@
 ---
-name: codex-v2ray-proxy-launcher
-description: Create a Windows desktop launcher that starts Codex with an automatically detected local proxy only for the Codex process. Use when Codex WebSocket streaming disconnects, reconnects repeatedly, falls back to HTTP, or when the user wants Codex to use v2rayN, Clash, Mihomo, sing-box, NekoRay, or another local proxy without enabling TUN or changing system-wide proxy settings.
+name: codex-proxy-launcher
+description: Create a Windows desktop launcher that starts Codex with an automatically detected local proxy only for the Codex process. Use when Codex WebSocket streaming disconnects, reconnects repeatedly, falls back to HTTP, or when the user wants Codex to use Clash, Mihomo, sing-box, NekoRay, or another local proxy without enabling TUN or changing system-wide proxy settings.
 ---
 
 # Codex Proxy Launcher
@@ -17,7 +17,7 @@ This avoids TUN mode and does not change Windows system proxy, browser proxy, or
 2. Run the installer script from this skill:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-v2ray-launcher.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-proxy-launcher.ps1
 ```
 
 The script auto-detects the proxy in this order:
@@ -25,18 +25,18 @@ The script auto-detects the proxy in this order:
 1. Explicit `-ProxyUrl`
 2. `HTTPS_PROXY`, `HTTP_PROXY`, or `ALL_PROXY`
 3. Windows user/system proxy settings
-4. Common local proxy ports for v2rayN, Clash/Mihomo, sing-box, NekoRay, and similar clients
+4. Common local proxy ports for Clash/Mihomo, sing-box, NekoRay, and similar clients
 
 For a custom mixed HTTP port:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-v2ray-launcher.ps1 -ProxyUrl "http://127.0.0.1:7890"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-proxy-launcher.ps1 -ProxyUrl "http://127.0.0.1:7890"
 ```
 
 For a SOCKS port, only use this if the installed Codex build supports SOCKS proxy environment variables:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-v2ray-launcher.ps1 -ProxyUrl "socks5h://127.0.0.1:10808"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-proxy-launcher.ps1 -ProxyUrl "socks5h://127.0.0.1:10808"
 ```
 
 ## Workflow
@@ -48,7 +48,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install-codex-v2
    - Prefer HTTP/mixed proxy ports because Codex reliably honors standard `HTTP_PROXY` and `HTTPS_PROXY` environment variables.
 
 2. Install the launcher:
-   - Run `scripts/install-codex-v2ray-launcher.ps1`.
+   - Run `scripts/install-codex-proxy-launcher.ps1`.
    - The script locates the current Windows Store Codex install through `Get-AppxPackage`.
    - It writes a support launcher under `%LOCALAPPDATA%\CodexProxyLauncher`.
    - It creates a desktop shortcut named `Codex - Proxy Launcher.lnk`.
